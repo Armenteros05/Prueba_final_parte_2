@@ -17,7 +17,6 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Cambiar el Look and Feel
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,17 +24,14 @@ public class Main {
 
         experimentoActual = new Experimento();
 
-        // Crear la ventana principal
         JFrame frame = new JFrame("Gestión de Experimentos");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setLayout(new GridLayout(2, 1));
 
-        // Crear los botones del menú principal
         JButton viewButton = new JButton("Consultar experimentos guardados");
         JButton createButton = new JButton("Crear nuevo experimento");
 
-        // Personalizar los botones
         viewButton.setFont(new Font("Arial", Font.BOLD, 14));
         viewButton.setBackground(Color.LIGHT_GRAY);
         viewButton.setForeground(Color.BLACK);
@@ -44,11 +40,9 @@ public class Main {
         createButton.setBackground(Color.LIGHT_GRAY);
         createButton.setForeground(Color.BLACK);
 
-        // Añadir los botones a la ventana
         frame.add(viewButton);
         frame.add(createButton);
 
-        // Acciones para los botones
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,18 +57,53 @@ public class Main {
             }
         });
 
-        // Mostrar la ventana
+        JButton simulateButton = new JButton("Simular experimento");
+        simulateButton.setFont(new Font("Arial", Font.BOLD, 14));
+        simulateButton.setBackground(Color.LIGHT_GRAY);
+        simulateButton.setForeground(Color.BLACK);
+
+        frame.add(simulateButton);
+
+        simulateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                simulateExperiment();
+            }
+        });
+
         frame.setVisible(true);
     }
 
+    private static void simulateExperiment() {
+        if (experimentos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay experimentos guardados");
+            return;
+        }
+
+        Experimento[] experimentosArray = experimentos.toArray(new Experimento[0]);
+        Experimento selectedExperiment = (Experimento) JOptionPane.showInputDialog(
+                null,
+                "Seleccione un experimento para simular:",
+                "Simulación de Montecarlo",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                experimentosArray,
+                experimentosArray[0]
+        );
+
+        if (selectedExperiment != null) {
+            for (Bacteria bacteria : selectedExperiment.getBacteriaPopulations()) {
+                // Aquí es donde se implementaría la simulación de Montecarlo
+            }
+        }
+    }
+
     private static void createExperimentWindow() {
-        // Crear la ventana de creación de experimentos
         JFrame createFrame = new JFrame("Crear nuevo experimento");
         createFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         createFrame.setSize(500, 500);
         createFrame.setLayout(new GridLayout(11, 2));
 
-        // Crear los campos de entrada
         JTextField experimentNameField = new JTextField();
         JTextField nameField = new JTextField();
         JTextField startDateField = new JTextField();
@@ -84,13 +113,11 @@ public class Main {
         JTextField lightConditionField = new JTextField();
         JTextField foodDoseField = new JTextField();
 
-        // Crear los botones
         JButton addButton = new JButton("Añadir población de bacterias");
         JButton editButton = new JButton("Editar población de bacterias");
         JButton deleteButton = new JButton("Eliminar población de bacterias");
         JButton saveButton = new JButton("Guardar experimento");
 
-        // Personalizar los botones
         addButton.setFont(new Font("Arial", Font.BOLD, 14));
         addButton.setBackground(Color.LIGHT_GRAY);
         addButton.setForeground(Color.BLACK);
@@ -107,7 +134,6 @@ public class Main {
         saveButton.setBackground(Color.LIGHT_GRAY);
         saveButton.setForeground(Color.BLACK);
 
-        // Añadir los campos y botones a la ventana
         createFrame.add(new JLabel("Nombre del experimento:"));
         createFrame.add(experimentNameField);
         createFrame.add(new JLabel("Nombre de la bacteria:"));
@@ -129,11 +155,9 @@ public class Main {
         createFrame.add(deleteButton);
         createFrame.add(saveButton);
 
-        // Acciones para los botones
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Crear una nueva población de bacterias y añadirla al experimento
                 String name = nameField.getText();
                 Date startDate = null;
                 Date endDate = null;
@@ -158,7 +182,6 @@ public class Main {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Editar una población de bacterias existente
                 if (experimentoActual.getBacteriaPopulations().isEmpty()) {
                     JOptionPane.showMessageDialog(createFrame, "No hay poblaciones de bacterias para editar");
                     return;
@@ -176,7 +199,6 @@ public class Main {
                 );
 
                 if (selectedBacteria != null) {
-                    // Mostrar un formulario con los detalles actuales de la bacteria
                     nameField.setText(selectedBacteria.getName());
                     startDateField.setText(new SimpleDateFormat("dd/MM/yyyy").format(selectedBacteria.getStartDate()));
                     endDateField.setText(new SimpleDateFormat("dd/MM/yyyy").format(selectedBacteria.getEndDate()));
@@ -185,7 +207,6 @@ public class Main {
                     lightConditionField.setText(selectedBacteria.getLightCondition());
                     foodDoseField.setText(String.valueOf(selectedBacteria.getFoodDose()));
 
-                    // Actualizar la bacteria cuando se presione el botón de edición
                     addButton.setText("Actualizar población de bacterias");
                     addButton.addActionListener(new ActionListener() {
                         @Override
@@ -204,7 +225,6 @@ public class Main {
                             String lightCondition = lightConditionField.getText();
                             int foodDose = Integer.parseInt(foodDoseField.getText());
 
-                            // Actualizar los detalles de la bacteria
                             selectedBacteria.setName(name);
                             selectedBacteria.setStartDate(startDate);
                             selectedBacteria.setEndDate(endDate);
@@ -223,7 +243,6 @@ public class Main {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Eliminar una población de bacterias existente
                 if (experimentoActual.getBacteriaPopulations().isEmpty()) {
                     JOptionPane.showMessageDialog(createFrame, "No hay poblaciones de bacterias para eliminar");
                     return;
@@ -250,15 +269,13 @@ public class Main {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Guardar el experimento
                 experimentos.add(experimentoActual);
                 saveExperiment();
                 String experimentName = experimentNameField.getText();
-                experimentoActual = new Experimento(experimentName);  // Crear un nuevo experimento para la próxima vez
+                experimentoActual = new Experimento(experimentName);
             }
         });
 
-        // Mostrar la ventana
         createFrame.setVisible(true);
     }
 
@@ -271,7 +288,6 @@ public class Main {
             fileOut.close();
             JOptionPane.showMessageDialog(null, "Experimento guardado");
 
-            // Recargar la lista de experimentos desde el archivo
             loadExperiment();
         } catch (IOException i) {
             i.printStackTrace();
@@ -310,7 +326,6 @@ public class Main {
                 experimentosArray[0]
         );
 
-
         if (selectedExperiment != null) {
             StringBuilder bacteriaDetails = new StringBuilder();
             int count = 1;
@@ -323,7 +338,7 @@ public class Main {
                 bacteriaDetails.append("Temperatura: ").append(bacteria.getTemperature()).append("\n");
                 bacteriaDetails.append("Condición de luz: ").append(bacteria.getLightCondition()).append("\n");
                 bacteriaDetails.append("Dosis de comida diaria: ").append(bacteria.getFoodDose()).append("\n\n");
-                bacteriaDetails.append("\n----------------------------------------\n\n"); // Línea de separación
+                bacteriaDetails.append("\n----------------------------------------\n\n");
             }
 
             JTextArea textArea = new JTextArea(bacteriaDetails.toString());
