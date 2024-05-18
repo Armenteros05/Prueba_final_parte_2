@@ -218,7 +218,6 @@ public class Main {
 
         simulationFrame.add(experimentComboBox, BorderLayout.NORTH);
         simulationFrame.setVisible(true);
-
     }
 
     private static void createExperimentWindow() {
@@ -234,6 +233,7 @@ public class Main {
         JTextField initialBacteriaCountField = new JTextField();
         JTextField temperatureField = new JTextField();
         JTextField lightConditionField = new JTextField();
+        JTextField foodSupplyPatternField = new JTextField();
         JTextField foodDoseField = new JTextField();
 
         JButton addButton = new JButton("Añadir población de bacterias");
@@ -271,7 +271,9 @@ public class Main {
         createFrame.add(temperatureField);
         createFrame.add(new JLabel("Condición de luz:"));
         createFrame.add(lightConditionField);
-        createFrame.add(new JLabel("Dosis de comida:"));
+        createFrame.add(new JLabel("Patrón de suministro de comida:"));
+        createFrame.add(foodSupplyPatternField);
+        createFrame.add(new JLabel("Dosis de comida (microgramos):"));
         createFrame.add(foodDoseField);
         createFrame.add(addButton);
         createFrame.add(editButton);

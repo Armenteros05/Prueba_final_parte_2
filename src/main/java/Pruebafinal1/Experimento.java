@@ -7,9 +7,11 @@ import java.util.List;
 public class Experimento implements Serializable {
     private String name;
     private List<Bacteria> bacteriaPopulations;
+    private String foodSupplyPattern; // Nuevo campo para el patrón de suministro de comida
 
-    public Experimento(String name) {
+    public Experimento(String name, String foodSupplyPattern) {
         this.name = name;
+        this.foodSupplyPattern = foodSupplyPattern;
         this.bacteriaPopulations = new ArrayList<>();
     }
 
@@ -17,27 +19,16 @@ public class Experimento implements Serializable {
         this.bacteriaPopulations = new ArrayList<>();
     }
 
+    public List<Bacteria> getBacteriaPopulations() {
+        return bacteriaPopulations;
+    }
+
+    public String getFoodSupplyPattern() {
+        return foodSupplyPattern;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void addBacteriaPopulation(Bacteria bacteria) {
-        this.bacteriaPopulations.add(bacteria);
-    }
-
-    public List<Bacteria> getBacteriaPopulations() {
-        return this.bacteriaPopulations;
-    }
-
-    @Override
-    public String toString() {
-        return "Experimento{" +
-                "name='" + name + '\'' +
-                ", bacteriaPopulations=" + bacteriaPopulations +
-                '}';
-    }
 }
