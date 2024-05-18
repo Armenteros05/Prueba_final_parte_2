@@ -9,7 +9,7 @@ public class Experimento implements Serializable {
     private List<Bacteria> bacteriaPopulations;
     private String foodSupplyPattern; // Nuevo campo para el patrón de suministro de comida
 
-    public Experimento(String name, String foodSupplyPattern) {
+    public Experimento(String name) {
         this.name = name;
         this.foodSupplyPattern = foodSupplyPattern;
         this.bacteriaPopulations = new ArrayList<>();
@@ -23,12 +23,31 @@ public class Experimento implements Serializable {
         return bacteriaPopulations;
     }
 
+    public void setBacteriaPopulations(List<Bacteria> bacteriaPopulations) {
+        this.bacteriaPopulations = bacteriaPopulations;
+    }
+
     public String getFoodSupplyPattern() {
         return foodSupplyPattern;
+    }
+
+    public void setFoodSupplyPattern(String foodSupplyPattern) {
+        this.foodSupplyPattern = foodSupplyPattern;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void addBacteriaPopulation(Bacteria bacteria) {
+        this.bacteriaPopulations.add(bacteria);
+    }
+
+    public void removeBacteriaPopulation(Bacteria bacteria) {
+        this.bacteriaPopulations.remove(bacteria);
+    }
 }
