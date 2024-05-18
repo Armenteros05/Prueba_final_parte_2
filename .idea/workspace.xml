@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5fa63e7-18b3-4883-a3dd-e1c8d05a9899" name="Changes" comment="Comenzamos con la simulación de Montecarmelo">
+    <list default="true" id="d5fa63e7-18b3-4883-a3dd-e1c8d05a9899" name="Changes" comment="Voy a probar con interfaz grafica, preparen el manicomio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Bacteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Bacteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Experimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Experimento.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716025208949</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Voy a probar con interfaz grafica, preparen el manicomio">
+      <option name="closed" value="true" />
+      <created>1716041991393</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716041991393</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,19 +116,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="TODO LO DE LA PRUEBA FINAL 1" />
     <MESSAGE value="Comenzamos con la simulación de Montecarmelo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comenzamos con la simulación de Montecarmelo" />
+    <MESSAGE value="Voy a probar con interfaz grafica, preparen el manicomio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Voy a probar con interfaz grafica, preparen el manicomio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>88</line>
-          <properties class="Main" method="simulateExperiment">
+          <line>235</line>
+          <properties class="Main" method="createExperimentWindow">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
