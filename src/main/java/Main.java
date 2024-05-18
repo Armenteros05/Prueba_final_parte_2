@@ -222,7 +222,7 @@ public class Main {
 
                     // Pausar por un corto período de tiempo para visualizar el movimiento de las bacterias
                     try {
-                        Thread.sleep(100); // Pausar por 100 milisegundos
+                        Thread.sleep(500); // Pausar por 500 milisegundos
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
