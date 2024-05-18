@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5fa63e7-18b3-4883-a3dd-e1c8d05a9899" name="Changes" comment="TODO LO DE LA PRUEBA FINAL 1">
+    <list default="true" id="d5fa63e7-18b3-4883-a3dd-e1c8d05a9899" name="Changes" comment="Comenzamos con la simulación de Montecarmelo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Experimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pruebafinal1/Experimento.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +82,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716023855253</updated>
-      <workItem from="1716023857541" duration="1067000" />
+      <workItem from="1716023857541" duration="5004000" />
     </task>
     <task id="LOCAL-00001" summary="TODO LO DE LA PRUEBA FINAL 1">
       <option name="closed" value="true" />
@@ -90,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716024083895</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Comenzamos con la simulación de Montecarmelo">
+      <option name="closed" value="true" />
+      <created>1716025208949</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716025208949</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +108,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="TODO LO DE LA PRUEBA FINAL 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO LO DE LA PRUEBA FINAL 1" />
+    <MESSAGE value="Comenzamos con la simulación de Montecarmelo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comenzamos con la simulación de Montecarmelo" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

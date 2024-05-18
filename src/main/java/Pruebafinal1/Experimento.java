@@ -1,6 +1,5 @@
 package Pruebafinal1;
 
-import Pruebafinal1.Bacteria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +12,17 @@ public class Experimento implements Serializable {
         this.name = name;
         this.bacteriaPopulations = new ArrayList<>();
     }
+
     public Experimento() {
         this.bacteriaPopulations = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addBacteriaPopulation(Bacteria bacteria) {
@@ -23,5 +31,13 @@ public class Experimento implements Serializable {
 
     public List<Bacteria> getBacteriaPopulations() {
         return this.bacteriaPopulations;
+    }
+
+    @Override
+    public String toString() {
+        return "Experimento{" +
+                "name='" + name + '\'' +
+                ", bacteriaPopulations=" + bacteriaPopulations +
+                '}';
     }
 }

@@ -14,6 +14,7 @@ import Pruebafinal1.Experimento;
 public class Main {
     private static List<Experimento> experimentos = new ArrayList<>();
     private static Experimento experimentoActual;
+    private static int[][] bacteriaPositions;
 
     public static void main(String[] args) {
         try {
@@ -75,27 +76,123 @@ public class Main {
     }
 
     private static void simulateExperiment() {
+        // Crear la ventana de visualización
+        JFrame simulationFrame = new JFrame("Simulación de Montecarlo");
+        simulationFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        simulationFrame.setSize(800, 800);
+        simulationFrame.setLayout(new BorderLayout());
+
+        // Crear el menú desplegable para seleccionar el experimento
         if (experimentos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay experimentos guardados");
             return;
         }
 
         Experimento[] experimentosArray = experimentos.toArray(new Experimento[0]);
-        Experimento selectedExperiment = (Experimento) JOptionPane.showInputDialog(
-                null,
-                "Seleccione un experimento para simular:",
-                "Simulación de Montecarlo",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                experimentosArray,
-                experimentosArray[0]
-        );
-
-        if (selectedExperiment != null) {
-            for (Bacteria bacteria : selectedExperiment.getBacteriaPopulations()) {
-                // Aquí es donde se implementaría la simulación de Montecarlo
+        JComboBox<Experimento> experimentComboBox = new JComboBox<>(experimentosArray);
+        experimentComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                experimentoActual = (Experimento) experimentComboBox.getSelectedItem();
             }
-        }
+        });
+
+        simulationFrame.add(experimentComboBox, BorderLayout.NORTH);
+
+        // Crear el botón de inicio de la simulación
+        JButton startSimulationButton = new JButton("Iniciar la simulación");
+        startSimulationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (experimentoActual == null) {
+                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún experimento");
+                    return;
+                }
+
+                // Inicializar bacteriaPositions
+                bacteriaPositions = new int[20][20];
+
+                // Crear una nueva ventana para la simulación
+                JFrame simulationWindow = new JFrame("Simulación de " + experimentoActual.getName());
+                simulationWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                simulationWindow.setSize(800, 800);
+                simulationWindow.setLayout(new BorderLayout());
+
+                // Aquí va el código para la simulación...
+                // Este es un ejemplo de cómo podrías implementar la simulación.
+                // Deberás adaptarlo a tus necesidades específicas.
+                JPanel simulationPanel = new JPanel();
+                simulationPanel.setBackground(Color.WHITE);
+                simulationWindow.add(simulationPanel, BorderLayout.CENTER);
+
+                // Crear un cuadro 20x20
+                int[][] cuadro = new int[20][20];
+
+                // Dividir la comida de manera equitativa en cada cuadro
+                int totalFood = 1000; // Total de comida disponible
+                int foodPerSquare = totalFood / (20 * 20);
+                for (int i = 0; i < 20; i++) {
+                    for (int j = 0; j < 20; j++) {
+                        cuadro[i][j] = foodPerSquare;
+                    }
+                }
+
+                // Inicializar todas las bacterias en la posición 4x4 del cuadro
+                for (Bacteria bacteria : experimentoActual.getBacteriaPopulations()) {
+                    bacteriaPositions[4][4] += bacteria.getInitialBacteriaCount();
+                }
+
+                // Simular el movimiento y alimentación de las bacterias
+                for (int t = 0; t < 100; t++) { // Simular durante 100 pasos de tiempo
+                    for (int i = 0; i < 20; i++) {
+                        for (int j = 0; j < 20; j++) {
+                            if (bacteriaPositions[i][j] > 0) {
+                                // Buscar el cuadro adyacente con más comida
+                                int maxFood = 0;
+                                int maxFoodX = i;
+                                int maxFoodY = j;
+                                for (int dx = -1; dx <= 1; dx++) {
+                                    for (int dy = -1; dy <= 1; dy++) {
+                                        int newX = i + dx;
+                                        int newY = j + dy;
+                                        if (newX >= 0 && newX < 20 && newY >= 0 && newY < 20 && cuadro[newX][newY] > maxFood) {
+                                            maxFood = cuadro[newX][newY];
+                                            maxFoodX = newX;
+                                            maxFoodY = newY;
+                                        }
+                                    }
+                                }
+
+                                // Mover las bacterias al cuadro con más comida
+                                if (maxFoodX != i || maxFoodY != j) {
+                                    bacteriaPositions[maxFoodX][maxFoodY] += bacteriaPositions[i][j];
+                                    bacteriaPositions[i][j] = 0;
+                                }
+
+                                // Las bacterias comen la comida en su cuadro
+                                int foodEaten = Math.min(cuadro[maxFoodX][maxFoodY], bacteriaPositions[maxFoodX][maxFoodY]);
+                                cuadro[maxFoodX][maxFoodY] -= foodEaten;
+                            }
+                        }
+                    }
+
+                    // Actualizar la visualización de la simulación
+                    simulationPanel.repaint();
+
+                    // Pausar por un corto período de tiempo para visualizar el movimiento de las bacterias
+                    try {
+                        Thread.sleep(100); // Pausar por 100 milisegundos
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                simulationWindow.setVisible(true);
+            }
+        });
+
+        simulationFrame.add(startSimulationButton, BorderLayout.SOUTH);
+        simulationFrame.setVisible(true);
     }
 
     private static void createExperimentWindow() {
